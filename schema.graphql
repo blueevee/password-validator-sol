@@ -1,0 +1,26 @@
+schema {
+    query: Query
+}
+
+enum Rules {
+  minSize
+  minUppercase
+  minLowercase
+  minDigit
+  minSpecialChars
+  noRepeted
+}
+
+input PasswordRules {
+    rule: Rules!
+    value: Int!
+}
+
+type VerifyResult {
+    verify: Boolean!
+    noMatch: [String]!
+}
+
+type Query {
+    verify(password: String!, rules: [PasswordRules!]): VerifyResult!
+}
